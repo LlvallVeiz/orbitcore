@@ -1,0 +1,11 @@
+[package]
+name = "orbitcore-core"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Core types, SI units, and mission config for OrbitCore — pure math/physics, no I/O, no_std capable."
+repository.workspace = true
+homepage.workspace = true
+authors.workspace = true
+
+[dependencies]
