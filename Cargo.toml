@@ -1,0 +1,14 @@
+[workspace]
+members = ["crates/orbitcore-core"]
+resolver = "2"
+
+[workspace.package]
+version = "0.1.0-alpha"
+edition = "2024"
+license = "MIT OR Apache-2.0"
+authors = ["Muhammad Rivaldy Pratama <m.rivaldypratama4@gmail.com>"]
+repository = "https://github.com/LlvallVeiz/orbitcore"
+homepage = "https://github.com/LlvallVeiz/orbitcore"
+description = "Design, simulate, and fly a CubeSat from a single Rust codebase — orbit, power, link, and operations in one mission digital twin."
+
+[workspace.dependencies]
