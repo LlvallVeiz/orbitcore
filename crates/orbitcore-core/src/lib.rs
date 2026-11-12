@@ -4,8 +4,14 @@
 //! this crate compiles for the mission simulator on a laptop and for the
 //! flight software on a microcontroller (`no_std`) alike.
 //!
-//! Day 1 only scaffolds the crate; the SI-units module and the error type
-//! land on Day 2, followed by the mission-file types.
+//! Day 2 adds the SI-units module ([`units`]) and the shared error type
+//! ([`error`]); the mission-file types land in Fase 2 (Week 8) with the
+//! `mission.toml` work.
+
+pub mod error;
+pub mod units;
+
+pub use error::{OrbitCoreError, Result};
 
 /// Crate version, kept in sync with the workspace version.
 pub const VERSION: &str = env!("CARGO_PKG_VERSION");

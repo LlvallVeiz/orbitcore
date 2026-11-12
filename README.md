@@ -18,8 +18,11 @@ operations scheduler in one codebase, validated against real sky data
 ## Status
 
 **Phase 1 — Orbit & Visibility (Weeks 1–4), in progress.** Day 1: workspace,
-CI, and this README. The goal of Phase 1 is a working `orbitcore pass`
-command driven by real TLE data, matching CelesTrak/SatNOGS.
+CI, and this README. Day 2: `orbitcore-core` gains type-safe SI units
+(`uom`) — Kepler's third law (500 km → ≈ 94.6 min, matching the literature),
+solar-panel power, and the shared `OrbitCoreError` type. The goal of Phase 1
+is a working `orbitcore pass` command driven by real TLE data, matching
+CelesTrak/SatNOGS.
 
 Roadmap (16 weeks, 4 phases):
 

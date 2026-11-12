@@ -9,3 +9,5 @@ homepage.workspace = true
 authors.workspace = true
 
 [dependencies]
+# Type-safe SI units — a meter/kilometer mix-up must not compile.
+uom = { version = "0.37", features = ["si", "f64"] }
