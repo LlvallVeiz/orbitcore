@@ -20,7 +20,12 @@ operations scheduler in one codebase, validated against real sky data
 **Phase 1 — Orbit & Visibility (Weeks 1–4), in progress.** Day 1: workspace,
 CI, and this README. Day 2: `orbitcore-core` gains type-safe SI units
 (`uom`) — Kepler's third law (500 km → ≈ 94.6 min, matching the literature),
-solar-panel power, and the shared `OrbitCoreError` type. The goal of Phase 1
+solar-panel power, and the shared `OrbitCoreError` type. Day 3: new crate
+`orbitcore-astro` with a strict TLE parser (fixed-width fields,
+implied-decimal BSTAR/eccentricity, column-69 checksum, epoch → calendar
+conversion, period/semi-major axis from mean motion) — validated against
+the live ISS TLE from CelesTrak (epoch 2026-11-12, 92.94 min period,
+≈ 426 km) and the 2008 canonical example. The goal of Phase 1
 is a working `orbitcore pass` command driven by real TLE data, matching
 CelesTrak/SatNOGS.
 

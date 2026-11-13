@@ -18,6 +18,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "orbitcore-astro"
+version = "0.1.0-alpha"
+dependencies = [
+ "orbitcore-core",
+]
+
+[[package]]
 name = "orbitcore-core"
 version = "0.1.0-alpha"
 dependencies = [

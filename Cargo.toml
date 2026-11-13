@@ -1,5 +1,5 @@
 [workspace]
-members = ["crates/orbitcore-core"]
+members = ["crates/orbitcore-core", "crates/orbitcore-astro"]
 resolver = "2"
 
 [workspace.package]

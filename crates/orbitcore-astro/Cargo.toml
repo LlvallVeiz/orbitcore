@@ -1,0 +1,12 @@
+[package]
+name = "orbitcore-astro"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "TLE/OMM parsing, SGP4 propagation, frames, ground-station visibility, and eclipse modelling for OrbitCore."
+repository.workspace = true
+homepage.workspace = true
+authors.workspace = true
+
+[dependencies]
+orbitcore-core = { path = "../orbitcore-core" }
