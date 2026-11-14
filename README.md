@@ -25,7 +25,13 @@ solar-panel power, and the shared `OrbitCoreError` type. Day 3: new crate
 implied-decimal BSTAR/eccentricity, column-69 checksum, epoch → calendar
 conversion, period/semi-major axis from mean motion) — validated against
 the live ISS TLE from CelesTrak (epoch 2026-11-12, 92.94 min period,
-≈ 426 km) and the 2008 canonical example. The goal of Phase 1
+≈ 426 km) and the 2008 canonical example. Day 4: OMM parser
+(`orbitcore-astro/src/omm.rs`, JSON via serde) for the same element
+sets — tolerant of missing/extra fields, strict about epoch and mean
+motion — plus a shared `OrbitalElements` type so a TLE and an OMM for
+the same satellite are compared field by field and must agree (ISS,
+2026-11-12 epoch: identical period 92.94 min, inclination, and
+eccentricity in both formats). The goal of Phase 1
 is a working `orbitcore pass` command driven by real TLE data, matching
 CelesTrak/SatNOGS.
 

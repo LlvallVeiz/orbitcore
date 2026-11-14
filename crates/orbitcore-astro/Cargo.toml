@@ -10,3 +10,7 @@ authors.workspace = true
 
 [dependencies]
 orbitcore-core = { path = "../orbitcore-core" }
+# OMM (JSON) parsing — serde for the struct mapping, serde_json for the
+# actual JSON text. Both are pure parsers; no I/O lives in this crate.
+serde = { workspace = true }
+serde_json = { workspace = true }

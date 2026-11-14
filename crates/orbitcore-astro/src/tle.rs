@@ -31,7 +31,6 @@
 //! is worse than no orbit at all.
 
 use orbitcore_core::error::{OrbitCoreError, Result};
-use orbitcore_core::units::{EARTH_MEAN_RADIUS_KM, MU_EARTH_KM3_PER_S2};
 
 /// A parsed two-line element set.
 #[derive(Debug, Clone, PartialEq)]
@@ -210,18 +209,36 @@ impl TwoLineElement {
         epoch_to_datetime(self.epoch_year, self.epoch_day)
     }
 
+    /// The shared orbital elements this TLE describes, in the same form
+    /// an OMM parses to — so a TLE and an OMM for the same satellite can
+    /// be compared field by field.
+    pub fn elements(&self) -> crate::elements::OrbitalElements {
+        crate::elements::OrbitalElements {
+            norad_cat_id: self.satellite_number,
+            epoch: self.epoch_datetime(),
+            epoch_day: self.epoch_day,
+            inclination_deg: self.inclination_deg,
+            raan_deg: self.raan_deg,
+            eccentricity: self.eccentricity,
+            arg_perigee_deg: self.arg_perigee_deg,
+            mean_anomaly_deg: self.mean_anomaly_deg,
+            mean_motion_rev_per_day: self.mean_motion_rev_per_day,
+            bstar: self.bstar,
+            revolution_number: Some(self.revolution_number),
+        }
+    }
+
     /// Orbital period in minutes, from mean motion: `T = 1440 / n`.
     ///
     /// For the ISS example TLE this gives ≈ 91.6 min.
     pub fn orbital_period_minutes(&self) -> f64 {
-        1440.0 / self.mean_motion_rev_per_day
+        self.elements().orbital_period_minutes()
     }
 
     /// Semi-major axis in km, from mean motion via Kepler's third law:
     /// `a = (μ / n²)^(1/3)` with `n` in rad/s.
     pub fn semi_major_axis_km(&self) -> f64 {
-        let n_rad_per_s = self.mean_motion_rev_per_day * 2.0 * std::f64::consts::PI / 86_400.0;
-        (MU_EARTH_KM3_PER_S2 / n_rad_per_s.powi(2)).cbrt()
+        self.elements().semi_major_axis_km()
     }
 
     /// Mean altitude above the Earth's surface in km (`a − R`).
@@ -230,7 +247,7 @@ impl TwoLineElement {
     /// ~7 km above the equatorial-radius figure, which is the convention
     /// difference, not an error.
     pub fn altitude_km(&self) -> f64 {
-        self.semi_major_axis_km() - EARTH_MEAN_RADIUS_KM
+        self.elements().altitude_km()
     }
 }
 

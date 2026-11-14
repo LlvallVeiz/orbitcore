@@ -12,3 +12,5 @@ homepage = "https://github.com/LlvallVeiz/orbitcore"
 description = "Design, simulate, and fly a CubeSat from a single Rust codebase — orbit, power, link, and operations in one mission digital twin."
 
 [workspace.dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = { version = "1" }
