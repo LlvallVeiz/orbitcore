@@ -31,7 +31,14 @@ sets — tolerant of missing/extra fields, strict about epoch and mean
 motion — plus a shared `OrbitalElements` type so a TLE and an OMM for
 the same satellite are compared field by field and must agree (ISS,
 2026-11-12 epoch: identical period 92.94 min, inclination, and
-eccentricity in both formats). The goal of Phase 1
+eccentricity in both formats). Day 5: the parsers re-validated against
+a **fresh live ISS element set** fetched from CelesTrak on 2026-11-14
+(epoch 2026-11-14 08:49:22 UTC, rev 59503) — new integration tests in
+`crates/orbitcore-astro/tests/iss_live_validation.rs` read the snapshots
+in `validation/data/` exactly as served, check TLE and OMM still agree
+field by field, and prove the numbers track the real satellite across
+days (epoch +1.94 days, rev +30, exactly what ~15.49 rev/day predicts;
+period shortened 0.002 min as drag lowers the orbit). The goal of Phase 1
 is a working `orbitcore pass` command driven by real TLE data, matching
 CelesTrak/SatNOGS.
 
