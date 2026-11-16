@@ -1,5 +1,5 @@
 [workspace]
-members = ["crates/orbitcore-core", "crates/orbitcore-astro"]
+members = ["crates/orbitcore-core", "crates/orbitcore-astro", "crates/orbitcore-sgp4"]
 resolver = "2"
 
 [workspace.package]
@@ -14,3 +14,7 @@ description = "Design, simulate, and fly a CubeSat from a single Rust codebase â
 [workspace.dependencies]
 serde = { version = "1", features = ["derive"] }
 serde_json = { version = "1" }
+# Upstream SGP4 (neuromorphicsystems/sgp4) v2.4.0 â€” the propagation math
+# for orbitcore-sgp4; OrbitCore wraps it, never re-implements it.
+sgp4 = { version = "2.4.0" }
+chrono = { version = "0.4", default-features = false, features = ["clock"] }

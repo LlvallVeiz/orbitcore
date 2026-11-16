@@ -1,0 +1,19 @@
+[package]
+name = "orbitcore-sgp4"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Thin SGP4 propagation wrapper for OrbitCore: turns parsed OrbitalElements into TEME state vectors, backed by the upstream sgp4 crate."
+repository.workspace = true
+homepage.workspace = true
+authors.workspace = true
+
+[dependencies]
+orbitcore-core = { path = "../orbitcore-core" }
+orbitcore-astro = { path = "../orbitcore-astro" }
+# Upstream SGP4 implementation (neuromorphicsystems/sgp4), v2.4.0:
+# pure Rust, no_std-capable, validated against CelesTrak to <2e-7 km in
+# position (plan §2.4). OrbitCore does NOT re-implement SGP4 — the
+# specification is its quirks — it wraps this crate in OrbitCore types.
+sgp4 = { workspace = true }
+chrono = { workspace = true }

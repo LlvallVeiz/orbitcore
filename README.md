@@ -38,7 +38,16 @@ a **fresh live ISS element set** fetched from CelesTrak on 2026-11-14
 in `validation/data/` exactly as served, check TLE and OMM still agree
 field by field, and prove the numbers track the real satellite across
 days (epoch +1.94 days, rev +30, exactly what ~15.49 rev/day predicts;
-period shortened 0.002 min as drag lowers the orbit). The goal of Phase 1
+period shortened 0.002 min as drag lowers the orbit). Week 2 Day 1: new
+crate `orbitcore-sgp4` wraps the upstream `sgp4` crate (v2.4.0,
+neuromorphicsystems — validated vs CelesTrak to <2×10⁻⁷ km; OrbitCore
+does not re-implement SGP4) behind OrbitCore types: `Propagator::from_elements`
+/`from_tle`, `propagate` / `propagate_range`, and a `StateVector`
+(TEME, km, km/s) with radius/speed/altitude helpers. Validated against
+the same live ISS snapshot: altitude ≈ 420 km and speed ≈ 7.66 km/s at
+epoch, back within 150 km after one 92.94 min period, inside the LEO
+band over a full 24 h, and the two build paths (`from_tle` vs
+`from_elements`) agree to < 5 km over a day. The goal of Phase 1
 is a working `orbitcore pass` command driven by real TLE data, matching
 CelesTrak/SatNOGS.
 
