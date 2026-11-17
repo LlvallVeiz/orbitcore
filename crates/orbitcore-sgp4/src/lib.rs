@@ -24,20 +24,31 @@
 //!   survives exactly. Use it when the original TLE text is at hand and
 //!   maximum fidelity matters.
 //!
-//! Both paths agree to well under a kilometre over a day for the ISS
-//! (see `tests/iss_propagation.rs`), because the mean-motion derivatives
-//! are tiny; the difference is documented, not hidden.
+//! Both paths agree exactly over a day for the ISS (see
+//! `tests/iss_24h.rs`): the only fields they differ in are the
+//! mean-motion derivatives, and the upstream `sgp4` crate (v2.4.0)
+//! parses those fields but never uses them in propagation — only BSTAR
+//! feeds the model. The agreement is measured, not assumed.
+//!
+//! On top of the wrapper, the [`Ephemeris`] type (see
+//! [`ephemeris`](crate::ephemeris)) turns a day of propagated states
+//! into orbit facts: revolutions made, ascending-node crossings and
+//! the nodal period, altitude and speed extremes. It is built from a
+//! [`Propagator`] with no files and no network — the 24-hour checks in
+//! `tests/iss_24h.rs` run offline against the CelesTrak snapshots in
+//! `validation/data/`.
 //!
 //! Like the rest of the workspace, propagation here is pure and
 //! deterministic: `propagate` takes minutes since epoch and returns a
-//! state vector, with no files and no network. Day 2 builds the 24-hour
-//! propagation and frame transforms on top of this wrapper.
+//! state vector, with no files and no network.
 //!
 //! [`OrbitalElements`]: orbitcore_astro::elements::OrbitalElements
 //! [`OrbitCoreError`]: orbitcore_core::error::OrbitCoreError
 
+pub mod ephemeris;
 pub mod propagator;
 pub mod state;
 
+pub use ephemeris::Ephemeris;
 pub use propagator::Propagator;
 pub use state::StateVector;
