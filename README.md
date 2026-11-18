@@ -47,7 +47,17 @@ does not re-implement SGP4) behind OrbitCore types: `Propagator::from_elements`
 the same live ISS snapshot: altitude ≈ 420 km and speed ≈ 7.66 km/s at
 epoch, back within 150 km after one 92.94 min period, inside the LEO
 band over a full 24 h, and the two build paths (`from_tle` vs
-`from_elements`) agree to < 5 km over a day. The goal of Phase 1
+`from_elements`) agree to < 5 km over a day. Week 2 Day 2: `Ephemeris`
+propagates a full 24 h (1441 states) and analyses the arc — 15.4963
+revolutions (mean motion 15.4937 ± 0.05), nodal period 92.879 min
+(92.94 ± 0.5, 15 node crossings), altitude 415–434 km, speed
+7.65–7.67 km/s — with TLE and OMM snapshots agreeing to 0.000000 km
+over the whole day. Week 2 Day 3: frame transforms in
+`orbitcore-astro/src/frames.rs` — Julian date (Meeus), GMST (Vallado's
+polynomial, cross-checked against Meeus's to ~3×10⁻⁸°; 185.8192111° at
+the ISS epoch), and the TEME → ECEF rotation `R₃(GMST)`, with the
+rotation sign checked via longitude = RA − GMST; over the ISS day the
+transform preserves `|r|` to < 1e-9 km and z exactly. The goal of Phase 1
 is a working `orbitcore pass` command driven by real TLE data, matching
 CelesTrak/SatNOGS.
 

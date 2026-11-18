@@ -3,10 +3,11 @@
 //! outputs.
 //!
 //! TEME is the native frame of SGP4 — an Earth-centred inertial frame
-//! whose equator and equinox are those of the epoch. Frame transforms
-//! (TEME → ECEF → geodetic latitude/longitude/altitude) land on Week 2
-//! Days 3–4; until then, radius, speed, and altitude above the mean
-//! Earth radius are the quantities downstream code needs, and they are
+//! whose equator and equinox are those of the epoch. The TEME → ECEF
+//! rotation lives in `orbitcore-astro::frames` (Week 2 Day 3); the
+//! geodetic step (ECEF → latitude/longitude/altitude) lands on Day 4.
+//! Until then, radius, speed, and altitude above the mean Earth radius
+//! are the quantities downstream code needs, and they are
 //! frame-independent.
 
 use orbitcore_core::units::EARTH_MEAN_RADIUS_KM;

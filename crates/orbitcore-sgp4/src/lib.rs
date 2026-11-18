@@ -38,6 +38,10 @@
 //! `tests/iss_24h.rs` run offline against the CelesTrak snapshots in
 //! `validation/data/`.
 //!
+//! A propagated state is in TEME; [`orbitcore_astro::frames`] rotates
+//! it into the Earth-fixed frame (ECEF) — Week 2 Day 3 — with the
+//! integration check in `tests/iss_frames.rs`.
+//!
 //! Like the rest of the workspace, propagation here is pure and
 //! deterministic: `propagate` takes minutes since epoch and returns a
 //! state vector, with no files and no network.
